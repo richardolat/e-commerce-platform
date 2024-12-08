@@ -13,27 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+  
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js environment
+      
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # Step 3: Install dependencies
+    
       - name: Install dependencies
         run: npm install
         working-directory: ./api
 
-      # Step 4: Run tests
+      
       - name: Run tests
         run: npm test
         working-directory: ./api
 
-      # Step 5: Start the backend server (optional for deployment)
+      
       - name: Start backend server
         run: npm start
         working-directory: ./api
