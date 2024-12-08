@@ -48,3 +48,4 @@ export default tseslint.config({
   },
 })
 ```
+Updated README for trigger testing
