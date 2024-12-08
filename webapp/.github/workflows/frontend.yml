@@ -1,0 +1,46 @@
+name: Frontend CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./webapp
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test
+        working-directory: ./webapp
+
+      # Step 5: Build the application
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./webapp
+
+      # Step 6: Upload build artifacts (optional)
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: ./webapp/dist
